@@ -18,6 +18,6 @@ Crea una interfaz simple para buscar los contenidos.
 
 **Solución, parte 1 y algo de la parte 2**
 
-Para la parte 1 ver main.go en /index. La solución es concurrente y su eficiencia está limitada por el nivel de I/O alcanzable al leer los archivos (517423 archivos, 2.23 Gb). 
+Para la parte 1 ver main.go en /index. La solución es concurrente y su eficiencia está limitada por el nivel de I/O alcanzable al leer los archivos (517423 archivos, 2.23 Gb). Solución "quick and dirty" :=)
 
 Para "algo" de la parte 2: main.go en /query. Hace la búsqueda de un término (embebido). Debe ampliarse a un servidor de API que permita consultas generales y crear una interfase de usuario.
