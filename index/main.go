@@ -70,7 +70,7 @@ func main() {
 	close(emails)
 	wge.Wait() // waits for or email file names found and processed
 	close(zincData)
-	wgd.Wait() // waits for or emails packaged and processed
+	wgd.Wait() // waits for emails be packaged and processed
 	fmt.Println("Duracion: ", time.Since(ti))
 	fmt.Println("Inserted: ", inserted)
 	fmt.Println("Error formato: ", formaterr)
