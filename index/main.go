@@ -38,7 +38,7 @@ func main() {
 	}
 	ti := time.Now()
 	wgd.Add(1)
-	// Read available emails, form a package of email and index it with ZincSearch
+	// Read available emails, form a package of emails and index it with ZincSearch
 	go func() {
 		defer wgd.Done()
 		b := strings.Builder{}
