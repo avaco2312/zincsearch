@@ -88,7 +88,7 @@ func findDirs(iniDir string) {
 	if err != nil {
 		panic(err)
 	}
-	dir.Close()
+	_ = dir.Close()
 	for _, f := range files {
 		if f.IsDir() {
 			findDirs(iniDir + "/" + f.Name())
@@ -133,15 +133,9 @@ func processEmail(email string) {
 		return
 	}
 	zincData <- fmt.Sprintf(`{"_id": "%s", "from": "%s", "to": "%s", "subject": "%s", "content": "%s"}`,
-		email, clean(m.Header.Get("From")), clean(m.Header.Get("To")), clean(m.Header.Get("Subject")), clean(string(body)))
+		email, fmt.Sprintf("%q", m.Header.Get("From")), fmt.Sprintf("%q", m.Header.Get("To")),
+		fmt.Sprintf("%q", m.Header.Get("Subject")), fmt.Sprintf("%q", string(body)))
 	<-concEmail
-}
-
-// Clean email special chars
-func clean(s string) string {
-	s1 := strings.ReplaceAll(s, `\`, `\\`)
-	s2 := strings.ReplaceAll(s1, string(rune(10)), `\n`)
-	return strings.ReplaceAll(s2, `"`, `\"`)
 }
 
 // Index one emails package
@@ -154,7 +148,7 @@ func zincCreate(s string, can int) {
 	}
 	mus.Lock()
 	inserted += count
-	rejected += (can - count)
+	rejected += can - count
 	mus.Unlock()
 	<-concZinc
 }
